@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FrgHink5nSqGxT+rryf9nr0qGYIiYIiFyCijA8JgutzOf2dojddRUHxM+p8jQiDJDcn6XBLrLRqz17prgec+NQ==",
+  "dgSpecHash": "C4wbbo1tCUNjsiG45KUdNKasv8ygh033TSV5Ik1mFhWvdz5YAWftTBIs066OD2EwDxi0dLJRdNo7LUC03PXAcA==",
   "success": true,
-  "projectFilePath": "D:\\repos\\RestWithAspNet5\\restWithAspNet5\\RestWithAspNet5\\RestWithAspNet5\\RestWithAspNet5.csproj",
+  "projectFilePath": "D:\\repos\\RestWithAspNet5\\restWithAspNet5\\00_RestWithAspNet5_ScaffoldViaTerminal\\RestWithAspNet5\\RestWithAspNet5.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vially Israel\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Vially Israel\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
