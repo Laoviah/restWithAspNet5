@@ -7,8 +7,7 @@ using Microsoft.Extensions.Hosting;
 using RestWithAspNet5.Business;
 using RestWithAspNet5.Business.Implementation;
 using RestWithAspNet5.Model.Context;
-using RestWithAspNet5.Repository;
-using RestWithAspNet5.Repository.Implementation;
+using RestWithAspNet5.Repository.Generic;
 using Serilog;
 using System.Collections.Generic;
 
@@ -32,7 +31,7 @@ namespace RestWithAspNet5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
 
             services.AddControllers();
 
@@ -46,9 +45,9 @@ namespace RestWithAspNet5
             services.AddDbContext<MySqlContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
             services.AddApiVersioning();
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
-            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
             services.AddScoped<IBooksBusiness, BooksBusinessImplementation>();
-            services.AddScoped<IBookRepository, BookRepositoryImplementation>();
+
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
 
 
@@ -77,7 +76,8 @@ namespace RestWithAspNet5
             try
             {
                 var evolveConnection = new MySql.Data.MySqlClient.MySqlConnection(connection);
-                var evolve = new Evolve.Evolve(evolveConnection, msg => Log.Information(msg)) { 
+                var evolve = new Evolve.Evolve(evolveConnection, msg => Log.Information(msg))
+                {
                     Locations = new List<string> { "database/migrations", "database/dataset" },
                     IsEraseDisabled = true,
                 };
