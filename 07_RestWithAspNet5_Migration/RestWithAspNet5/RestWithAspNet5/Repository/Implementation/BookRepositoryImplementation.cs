@@ -3,7 +3,6 @@ using RestWithAspNet5.Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace RestWithAspNet5.Repository.Implementation
 {
