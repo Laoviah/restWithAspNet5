@@ -62,5 +62,6 @@ namespace RestWithAspNet5.Data.Converter.Implementations
             }
 
             return origins.Select(item => Parse(item)).ToList();
+        }
     }
 }
