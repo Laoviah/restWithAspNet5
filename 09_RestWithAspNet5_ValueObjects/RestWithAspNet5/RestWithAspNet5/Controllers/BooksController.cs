@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RestWithAspNet5.Business;
+using RestWithAspNet5.Data.VO;
 using RestWithAspNet5.Model;
 using Serilog;
 
@@ -40,25 +41,25 @@ namespace RestWithAspNet5.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Book book)
+        public IActionResult Post([FromBody] BookVO bookVO)
         {
-            if (book == null)
+            if (bookVO == null)
             {
                 return NotFound();
             }
 
-            return Ok(_bookBusiness.Create(book));
+            return Ok(_bookBusiness.Create(bookVO));
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Book book)
+        public IActionResult Put([FromBody] BookVO bookVO)
         {
-            if (book == null)
+            if (bookVO == null)
             {
                 return NotFound();
             }
 
-            return Ok(_bookBusiness.Update(book));
+            return Ok(_bookBusiness.Update(bookVO));
         }
 
         [HttpDelete("{id}")]
