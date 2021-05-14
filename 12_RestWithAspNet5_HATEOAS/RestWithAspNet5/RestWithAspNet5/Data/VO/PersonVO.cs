@@ -1,6 +1,10 @@
-﻿namespace RestWithAspNet5.Data.VO
+﻿using RestWithAspNet5.Hypermedia;
+using RestWithAspNet5.Hypermedia.Abstract;
+using System.Collections.Generic;
+
+namespace RestWithAspNet5.Data.VO
 {
-    public class PersonVO
+    public class PersonVO : ISupportHypermedia
     {
         public long Id { get; set; }
 
@@ -11,5 +15,6 @@
         public string Address { get; set; }
 
         public string Gender { get; set; }
+        public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
     }
 }

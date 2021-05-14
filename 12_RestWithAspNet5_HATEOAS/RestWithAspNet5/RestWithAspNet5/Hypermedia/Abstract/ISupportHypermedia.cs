@@ -4,6 +4,6 @@ namespace RestWithAspNet5.Hypermedia.Abstract
 {
     public interface ISupportHypermedia
     {
-        List<HypermediaLink> Links { get; set; }
+        List<HyperMediaLink> Links { get; set; }
     }
 }

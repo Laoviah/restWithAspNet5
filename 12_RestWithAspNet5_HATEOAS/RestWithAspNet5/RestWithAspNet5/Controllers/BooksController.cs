@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using RestWithAspNet5.Business;
 using RestWithAspNet5.Data.VO;
+using RestWithAspNet5.Hypermedia.Filters;
 using RestWithAspNet5.Model;
 using Serilog;
 
@@ -22,12 +23,14 @@ namespace RestWithAspNet5.Controllers
         }
 
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             return Ok(_bookBusiness.FindAll());
         }
 
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
             var person = _bookBusiness.FindById(id);
@@ -41,6 +44,7 @@ namespace RestWithAspNet5.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody] BookVO bookVO)
         {
             if (bookVO == null)
@@ -52,6 +56,7 @@ namespace RestWithAspNet5.Controllers
         }
 
         [HttpPut]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody] BookVO bookVO)
         {
             if (bookVO == null)

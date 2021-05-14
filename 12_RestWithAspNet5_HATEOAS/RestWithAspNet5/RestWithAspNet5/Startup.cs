@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 using RestWithAspNet5.Business;
 using RestWithAspNet5.Business.Implementation;
+using RestWithAspNet5.Hypermedia.Enricher;
+using RestWithAspNet5.Hypermedia.Filters;
 using RestWithAspNet5.Model.Context;
 using RestWithAspNet5.Repository.Generic;
 using Serilog;
@@ -51,6 +53,13 @@ namespace RestWithAspNet5
             }).AddXmlSerializerFormatters();
 
             services.AddDbContext<MySqlContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
+
+            var filterOptions = new HyperMediaFilterOptions();
+            filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+            filterOptions.ContentResponseEnricherList.Add(new BookEnricher());
+
+            services.AddSingleton(filterOptions);
+
             services.AddApiVersioning();
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
             services.AddScoped<IBooksBusiness, BooksBusinessImplementation>();
@@ -76,6 +85,7 @@ namespace RestWithAspNet5
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id}");
             });
         }
 

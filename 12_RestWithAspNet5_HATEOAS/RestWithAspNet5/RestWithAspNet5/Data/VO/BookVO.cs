@@ -1,11 +1,13 @@
-﻿using System;
+﻿using RestWithAspNet5.Hypermedia;
+using RestWithAspNet5.Hypermedia.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace RestWithAspNet5.Data.VO
 {
-    public class BookVO
+    public class BookVO : ISupportHypermedia
     {
         public long Id { get; set; }
 
@@ -16,5 +18,6 @@ namespace RestWithAspNet5.Data.VO
         public decimal Price { get; set; }
 
         public DateTime LaunchDate { get; set; }
+        public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
     }
 }
