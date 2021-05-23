@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RestWithAspNet5.Model;
 using RestWithAspNet5.Business;
 using RestWithAspNet5.Data.VO;
 using RestWithAspNet5.Hypermedia.Filters;
@@ -10,6 +10,7 @@ namespace RestWithAspNet5.Controllers
 {
     [ApiController]
     [ApiVersion("1")]
+    [Authorize("Bearer")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class PersonController : ControllerBase
     {
@@ -66,7 +67,7 @@ namespace RestWithAspNet5.Controllers
 
             return Ok(_personBusiness.Create(personVO));
         }
-        
+
         [HttpPut]
         [ProducesResponseType((200), Type = typeof(BookVO))]
         [ProducesResponseType(400)]
@@ -90,7 +91,7 @@ namespace RestWithAspNet5.Controllers
         {
             _personBusiness.Delete(id);
 
-            
+
             return NoContent();
         }
 
