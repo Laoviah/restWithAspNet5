@@ -6,6 +6,9 @@ namespace RestWithAspNet5.Repository
     public interface IUserRepository
     {
         User ValidateCredentials(UserVO userVO);
-        User RefreshUserInfo(User user)
+        User ValidateCredentials(string userName);
+        User RefreshUserInfo(User user);
+        bool RevokeToken(string userName);
+
     }
 }

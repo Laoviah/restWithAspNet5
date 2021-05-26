@@ -6,7 +6,6 @@ using RestWithAspNet5.Data.VO;
 namespace RestWithAspNet5.Controllers
 {
     [ApiController]
-    [Authorize("Bearer")]
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class AuthController : Controller
@@ -36,6 +35,43 @@ namespace RestWithAspNet5.Controllers
             }
 
             return Ok(token);
+        }
+
+
+        [HttpPost]
+        [Route("refresh")]
+        public IActionResult Refresh([FromBody] TokenVO tokenVO)
+        {
+            if (tokenVO == null)
+            {
+                return BadRequest("Invalid client request");
+            }
+
+            var token = _loginBusiness.ValidateCredentials(tokenVO);
+
+            if (token == null)
+            {
+                return BadRequest("Invalid client request");
+            }
+
+            return Ok(token);
+        }
+
+        [HttpGet]
+        [Route("revoke")]
+        [Authorize("Bearer")]
+        public IActionResult Revoke()
+        {
+            
+            var userName = User.Identity.Name; //não precisa passar parametro, por causa do Bearer o framework consegue identificar quem está logado
+            var result = _loginBusiness.RevokeToken(userName);
+
+            if (!result)
+            {
+                return BadRequest("Invalid client request");
+            }
+
+            return NoContent();
         }
     }
 }
