@@ -56,5 +56,10 @@ namespace RestWithAspNet5.Business.Implementation
 
             return _personConverter.Parse(personEntity);
         }
+
+        public List<PersonVO> FindByName(string firstName, string lastName)
+        {
+            return _personConverter.Parse(_repository.FindByName(firstName, lastName));
+        }
     }
 }
