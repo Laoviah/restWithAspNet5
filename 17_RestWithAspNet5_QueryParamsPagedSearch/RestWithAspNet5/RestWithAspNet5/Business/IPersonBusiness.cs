@@ -1,4 +1,5 @@
 ﻿using RestWithAspNet5.Data.VO;
+using RestWithAspNet5.Hypermedia.Utils;
 using System.Collections.Generic;
 
 namespace RestWithAspNet5.Business
@@ -12,5 +13,6 @@ namespace RestWithAspNet5.Business
         PersonVO Update(PersonVO personVO);
         PersonVO Disable(long id);
         void Delete(long id);
+        PagedSearchVO<PersonVO> FindWithPagedSearch(string name, string sortDirection, int pageSize, int page);
     }
 }
