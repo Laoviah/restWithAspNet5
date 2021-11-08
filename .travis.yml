@@ -10,7 +10,7 @@ before_install:
 script:
   - docker-compose build
 before_deploy:
-  - echo "10REsebo10" | docker login --username "laoviah" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login --username "viallyisrael@hotmail.com" --password-stdin
 deploy:
   provider: script
   script: 
