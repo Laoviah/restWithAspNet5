@@ -9,7 +9,7 @@ before_install:
   - echo "We are in the right folder!"
 script:
   - docker-compose build
-before-deploy:
+before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
 deploy:
   provider: script
